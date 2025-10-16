@@ -1,0 +1,225 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Consulting Support Proposal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        header {
+            text-align: center;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        details {
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        summary {
+            background-color: #eee;
+            padding: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        summary:hover {
+            background-color: #ddd;
+        }
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        footer {
+            text-align: center;
+            border-top: 2px solid #ccc;
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+        .logo {
+            max-width: 200px;
+            height: auto;
+            margin: 0 auto 20px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="image1.png" alt="Nuvana Edge Consulting Logo" class="logo">
+        <h1>Proposal: HR Consulting Support</h1>
+        <p><strong>Submitted by:</strong> Nuvana Edge Consulting</p>
+        <p><strong>Prepared for:</strong> RightSmart Technologies LLC/ RightSmart Technologies (Pty) Ltd</p>
+        <p><strong>Date:</strong> 16 October 2025</p>
+    </header>
+
+    <details>
+        <summary>Executive Summary</summary>
+        <p>NuVana Edge Consulting endeavours to support Right Smart in renewing and establishing HR Processes to support governance and congruence in areas of practice.</p>
+    </details>
+
+    <details>
+        <summary>Objectives as Stipulated in Request</summary>
+        <h3>Onboarding & HR Essentials for RightSmart Technologies</h3>
+        <ul>
+            <li>HR Policies & Procedures</li>
+            <li>Code of conduct</li>
+            <li>Anti-discrimination and harassment policy</li>
+            <li>Leave and time-off policies</li>
+            <li>Remote work and hybrid work guidelines (Client Dependant)</li>
+            <li>Disciplinary and grievance procedures</li>
+            <li>Compliance & Legal Documents</li>
+            <li>Employment contracts (per employment contract type) (Review)</li>
+            <li>Confidentiality and non-disclosure agreements (Review)</li>
+            <li>POPIA compliance documentation</li>
+            <li>WSP & Employment Equity</li>
+            <li>New Hire Documentation Checklist</li>
+            <li>Personal information form</li>
+            <li>Banking details form</li>
+            <li>Tax registration documents (e.g., SARS forms)</li>
+            <li>Proof of identity and qualifications</li>
+            <li>Offer letter</li>
+            <li>Onboarding Process Materials</li>
+            <li>Welcome letter</li>
+            <li>Job Description</li>
+            <li>HR Systems & Recordkeeping</li>
+            <li>Leave tracking system</li>
+            <li>Exit interview process</li>
+            <li>Employee handbook</li>
+        </ul>
+    </details>
+
+    <details>
+        <summary>Proposed Costing on Outcomes</summary>
+        <table>
+            <thead>
+                <tr>
+                    <th>Service</th>
+                    <th>Rate</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Review and Update Contracts</td>
+                    <td>R1500.00 Local<br>R1800.00 Middle East</td>
+                    <td>Per Contract</td>
+                </tr>
+                <tr>
+                    <td>Create new Contracts</td>
+                    <td>R2000.00 Local<br>R2300.00 Middle East</td>
+                    <td>Per Contract</td>
+                </tr>
+                <tr>
+                    <td>Review and Update HR Policies</td>
+                    <td>R1500.00 Local<br>R1800.00 Middle East</td>
+                    <td>Per Policy</td>
+                </tr>
+                <tr>
+                    <td>Create New Policies</td>
+                    <td>R2000.00 Local<br>R2300.00 Middle East</td>
+                    <td>Per Policy</td>
+                </tr>
+                <tr>
+                    <td>Create onboarding and Induction Documentation</td>
+                    <td>R6000.00</td>
+                    <td>Project Fee based on the above information</td>
+                </tr>
+                <tr>
+                    <td>Job Descriptions</td>
+                    <td>R1200.00</td>
+                    <td>Per job Description</td>
+                </tr>
+                <tr>
+                    <td>WorkPlace Skills Plan</td>
+                    <td>To be Discussed</td>
+                    <td>Depends on what is established and current Compliance and number of Staff when submitting</td>
+                </tr>
+                <tr>
+                    <td>Employment Equity</td>
+                    <td>To be Discussed</td>
+                    <td>Depends on what is established and current Compliance and number of Staff when submitting</td>
+                </tr>
+                <tr>
+                    <td>HRIS System Set up Project Management</td>
+                    <td>To be Discussed</td>
+                    <td>Depends on what is in place. It will provide clarity on timelines – Project Based Fee</td>
+                </tr>
+            </tbody>
+        </table>
+    </details>
+
+    <footer>
+        <h3>Contact Details</h3>
+        <p>Natisha Moodley</p>
+        <p>Founder | HR Architect</p>
+        <p>📧 Natisha@NuVanaEdge.co.za</p>
+        <p>📞 +27 725333 028</p>
+        <p>🌍 Johannesburg & Virtual Support</p>
+    </footer>
+</body>
+</html>
