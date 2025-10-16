@@ -43,74 +43,194 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HR Consulting Support Proposal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 20px;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f9f9f9;
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --background-color: #f5f7fa;
+            --text-color: #333;
+            --border-color: #e0e0e0;
+            --selectable-hover: #e6f0fa;
         }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
         header {
             text-align: center;
-            border-bottom: 2px solid #ccc;
-            padding-bottom: 20px;
-            margin-bottom: 20px;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
         }
-        h1, h2, h3 {
-            color: #333;
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
         }
+
+        h2, h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
         details {
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
             overflow: hidden;
+            transition: all 0.3s ease;
         }
+
         summary {
-            background-color: #eee;
-            padding: 10px;
+            background-color: #fff;
+            padding: 1rem;
             cursor: pointer;
-            font-weight: bold;
+            font-weight: 600;
+            color: var(--primary-color);
+            transition: background-color 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
+
         summary:hover {
-            background-color: #ddd;
+            background-color: #f8f9fa;
         }
+
+        summary i {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            transition: transform 0.2s ease;
+        }
+
+        summary:hover i {
+            transform: scale(1.1);
+        }
+
+        details[open] summary {
+            background-color: var(--accent-color);
+            color: #fff;
+        }
+
+        details[open] summary i {
+            color: #fff;
+        }
+
+        details > div {
+            padding: 1.5rem;
+            background-color: #fff;
+        }
+
         ul {
             list-style-type: disc;
-            padding-left: 20px;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 20px;
+            margin-bottom: 1.5rem;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
+
         th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
+            border: 1px solid var(--border-color);
+            padding: 0.75rem;
             text-align: left;
         }
+
         th {
-            background-color: #f2f2f2;
+            background-color: var(--primary-color);
+            color: #fff;
+            font-weight: 600;
         }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #e6f0fa;
+        }
+
         footer {
             text-align: center;
-            border-top: 2px solid #ccc;
-            padding-top: 20px;
-            margin-top: 20px;
+            padding: 2rem 0;
+            border-top: 1px solid var(--border-color);
+            margin-top: 2rem;
+            color: var(--text-color);
         }
-        .logo {
-            max-width: 200px;
-            height: auto;
-            margin: 0 auto 20px;
-            display: block;
+
+        footer p {
+            margin: 0.3rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        footer i {
+            color: var(--accent-color);
+        }
+
+        .selectable {
+            user-select: text;
+            cursor: text;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            transition: background-color 0.2s ease;
+        }
+
+        .selectable:hover {
+            background-color: var(--selectable-hover);
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            body {
+                padding: 1rem;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 0.5rem;
+            }
+
+            summary i {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
     <header>
-        <img src="image1.png" alt="Nuvana Edge Consulting Logo" class="logo">
         <h1>Proposal: HR Consulting Support</h1>
         <p><strong>Submitted by:</strong> Nuvana Edge Consulting</p>
         <p><strong>Prepared for:</strong> RightSmart Technologies LLC/ RightSmart Technologies (Pty) Ltd</p>
@@ -118,108 +238,114 @@
     </header>
 
     <details>
-        <summary>Executive Summary</summary>
-        <p>NuVana Edge Consulting endeavours to support Right Smart in renewing and establishing HR Processes to support governance and congruence in areas of practice.</p>
+        <summary><i class="fas fa-file-alt"></i> Executive Summary</summary>
+        <div>
+            <p>NuVana Edge Consulting endeavours to support Right Smart in renewing and establishing HR Processes to support governance and congruence in areas of practice.</p>
+        </div>
     </details>
 
     <details>
-        <summary>Objectives as Stipulated in Request</summary>
-        <h3>Onboarding & HR Essentials for RightSmart Technologies</h3>
-        <ul>
-            <li>HR Policies & Procedures</li>
-            <li>Code of conduct</li>
-            <li>Anti-discrimination and harassment policy</li>
-            <li>Leave and time-off policies</li>
-            <li>Remote work and hybrid work guidelines (Client Dependant)</li>
-            <li>Disciplinary and grievance procedures</li>
-            <li>Compliance & Legal Documents</li>
-            <li>Employment contracts (per employment contract type) (Review)</li>
-            <li>Confidentiality and non-disclosure agreements (Review)</li>
-            <li>POPIA compliance documentation</li>
-            <li>WSP & Employment Equity</li>
-            <li>New Hire Documentation Checklist</li>
-            <li>Personal information form</li>
-            <li>Banking details form</li>
-            <li>Tax registration documents (e.g., SARS forms)</li>
-            <li>Proof of identity and qualifications</li>
-            <li>Offer letter</li>
-            <li>Onboarding Process Materials</li>
-            <li>Welcome letter</li>
-            <li>Job Description</li>
-            <li>HR Systems & Recordkeeping</li>
-            <li>Leave tracking system</li>
-            <li>Exit interview process</li>
-            <li>Employee handbook</li>
-        </ul>
+        <summary><i class="fas fa-list-check"></i> Objectives as Stipulated in Request</summary>
+        <div>
+            <h3>Onboarding & HR Essentials for RightSmart Technologies</h3>
+            <ul>
+                <li>HR Policies & Procedures</li>
+                <li>Code of conduct</li>
+                <li>Anti-discrimination and harassment policy</li>
+                <li>Leave and time-off policies</li>
+                <li>Remote work and hybrid work guidelines (Client Dependant)</li>
+                <li>Disciplinary and grievance procedures</li>
+                <li>Compliance & Legal Documents</li>
+                <li>Employment contracts (per employment contract type) (Review)</li>
+                <li>Confidentiality and non-disclosure agreements (Review)</li>
+                <li>POPIA compliance documentation</li>
+                <li>WSP & Employment Equity</li>
+                <li>New Hire Documentation Checklist</li>
+                <li>Personal information form</li>
+                <li>Banking details form</li>
+                <li>Tax registration documents (e.g., SARS forms)</li>
+                <li>Proof of identity and qualifications</li>
+                <li>Offer letter</li>
+                <li>Onboarding Process Materials</li>
+                <li>Welcome letter</li>
+                <li>Job Description</li>
+                <li>HR Systems & Recordkeeping</li>
+                <li>Leave tracking system</li>
+                <li>Exit interview process</li>
+                <li>Employee handbook</li>
+            </ul>
+        </div>
     </details>
 
     <details>
-        <summary>Proposed Costing on Outcomes</summary>
-        <table>
-            <thead>
-                <tr>
-                    <th>Service</th>
-                    <th>Rate</th>
-                    <th>Notes</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Review and Update Contracts</td>
-                    <td>R1500.00 Local<br>R1800.00 Middle East</td>
-                    <td>Per Contract</td>
-                </tr>
-                <tr>
-                    <td>Create new Contracts</td>
-                    <td>R2000.00 Local<br>R2300.00 Middle East</td>
-                    <td>Per Contract</td>
-                </tr>
-                <tr>
-                    <td>Review and Update HR Policies</td>
-                    <td>R1500.00 Local<br>R1800.00 Middle East</td>
-                    <td>Per Policy</td>
-                </tr>
-                <tr>
-                    <td>Create New Policies</td>
-                    <td>R2000.00 Local<br>R2300.00 Middle East</td>
-                    <td>Per Policy</td>
-                </tr>
-                <tr>
-                    <td>Create onboarding and Induction Documentation</td>
-                    <td>R6000.00</td>
-                    <td>Project Fee based on the above information</td>
-                </tr>
-                <tr>
-                    <td>Job Descriptions</td>
-                    <td>R1200.00</td>
-                    <td>Per job Description</td>
-                </tr>
-                <tr>
-                    <td>WorkPlace Skills Plan</td>
-                    <td>To be Discussed</td>
-                    <td>Depends on what is established and current Compliance and number of Staff when submitting</td>
-                </tr>
-                <tr>
-                    <td>Employment Equity</td>
-                    <td>To be Discussed</td>
-                    <td>Depends on what is established and current Compliance and number of Staff when submitting</td>
-                </tr>
-                <tr>
-                    <td>HRIS System Set up Project Management</td>
-                    <td>To be Discussed</td>
-                    <td>Depends on what is in place. It will provide clarity on timelines – Project Based Fee</td>
-                </tr>
-            </tbody>
-        </table>
+        <summary><i class="fas fa-dollar-sign"></i> Proposed Costing on Outcomes</summary>
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Rate</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Review and Update Contracts</td>
+                        <td>R1500.00 Local<br>R1800.00 Middle East</td>
+                        <td>Per Contract</td>
+                    </tr>
+                    <tr>
+                        <td>Create new Contracts</td>
+                        <td>R2000.00 Local<br>R2300.00 Middle East</td>
+                        <td>Per Contract</td>
+                    </tr>
+                    <tr>
+                        <td>Review and Update HR Policies</td>
+                        <td>R1500.00 Local<br>R1800.00 Middle East</td>
+                        <td>Per Policy</td>
+                    </tr>
+                    <tr>
+                        <td>Create New Policies</td>
+                        <td>R2000.00 Local<br>R2300.00 Middle East</td>
+                        <td>Per Policy</td>
+                    </tr>
+                    <tr>
+                        <td>Create onboarding and Induction Documentation</td>
+                        <td>R6000.00</td>
+                        <td>Project Fee based on the above information</td>
+                    </tr>
+                    <tr>
+                        <td>Job Descriptions</td>
+                        <td>R1200.00</td>
+                        <td>Per job Description</td>
+                    </tr>
+                    <tr>
+                        <td>WorkPlace Skills Plan</td>
+                        <td>To be Discussed</td>
+                        <td>Depends on what is established and current Compliance and number of Staff when submitting</td>
+                    </tr>
+                    <tr>
+                        <td>Employment Equity</td>
+                        <td>To be Discussed</td>
+                        <td>Depends on what is established and current Compliance and number of Staff when submitting</td>
+                    </tr>
+                    <tr>
+                        <td>HRIS System Set up Project Management</td>
+                        <td>To be Discussed</td>
+                        <td>Depends on what is in place. It will provide clarity on timelines – Project Based Fee</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </details>
 
     <footer>
-        <h3>Contact Details</h3>
-        <p>Natisha Moodley</p>
-        <p>Founder | HR Architect</p>
-        <p>📧 Natisha@NuVanaEdge.co.za</p>
-        <p>📞 +27 725333 028</p>
-        <p>🌍 Johannesburg & Virtual Support</p>
+        <h3><i class="fas fa-address-card"></i> Contact Details</h3>
+        <p><i class="fas fa-user"></i> Natisha Moodley</p>
+        <p><i class="fas fa-briefcase"></i> Founder | HR Architect</p>
+        <p><i class="fas fa-envelope"></i> <span class="selectable">Natisha@NuVanaEdge.co.za</span></p>
+        <p><i class="fas fa-phone"></i> <span class="selectable">+27 725333 028</span></p>
+        <p><i class="fas fa-globe"></i> Johannesburg & Virtual Support</p>
     </footer>
 </body>
 </html>
